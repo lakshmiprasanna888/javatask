@@ -1,0 +1,34 @@
+<form id="Instagrame login form">
+    <input type="text" id="username" placeholder="Username">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <input type="text" id="mobileNumber" placeholder="Mobile Number">
+    <button type="submit">Register</button>
+  </form>
+  
+  <script>
+    const form = document.getElementById('Instagrame login form');
+  
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const mobileNumber = document.getElementById('mobileNumber').value;
+  
+      const errors = validateRegistration(username, email, password, mobileNumber);
+  
+      if (Object.keys(errors).length > 0) {
+        console.log('Validation errors:');
+        for (const field in errors) {
+          console.log(`${field}: ${errors[field]}`);
+        }
+      } else {
+        console.log('Validation successful.');
+        // Submit form logic here
+      }
+    });
+  </script>
+  
+  
+  

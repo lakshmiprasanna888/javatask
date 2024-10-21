@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Ago Timestamp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Time Ago Example</h1>
+    <div id="timestamp"></div>
+
+    <script>
+        function timeAgo(postTime) {
+            const now = new Date();
+            const diff = now - postTime;
+
+            const seconds = Math.floor(diff / 1000);
+
+            if (seconds < 60) {
+                return $;{seconds} {seconds !== 1 ? 's' : ''} ago;
+            } else if (seconds < 3600) {
+                const minutes = Math.floor(seconds / 60);
+                return $;{minutes} {minutes !== 1 ? 's' : ''} ago;
+            } else if (seconds < 86400) {
+                const hours = Math.floor(seconds / 3600);
+                return $;{hours} {hours !== 1 ? 's' : ''} ago;
+            } else if (seconds < 2592000) { // 30 days
+                const days = Math.floor(seconds / 86400);
+                return $;{days} {days !== 1 ? 's' : ''} ago;
+            } else {
+                const months = Math.floor(seconds / 2592000); // 30 days
+                return $;{months} {months !== 1 ? 's' : ''} ago;
+            }
+        }
+
+        // Example usage:
+        const postTimeStr = "17/10/2023 12.30.00"; // Format: dd/mm/yyyy -> hh.mm.ss
+        const postTimeParts = postTimeStr.split(' ');
+        const dateParts = postTimeParts[0].split('/');
+        const timeParts = postTimeParts[1].split('.');
+
+        // Create a new Date object
+        const postTime = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]);
+
+        // Display the result
+        document.getElementById('timestamp').innerText = timeAgo(postTime);
+    </script>
+</body>
+</html>
